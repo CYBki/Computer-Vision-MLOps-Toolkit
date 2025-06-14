@@ -642,23 +642,3 @@ def manage_memory():
     gc.collect()  # Force garbage collection
     
 # Call periodically during inference
-```
-
----
-
-## 7. Next Steps
-
-1. **Immediate Actions:**
-   - Set up development environment
-   - Export existing YOLOv5 models to baseline
-   - Download and test YOLOv8n and YOLOv11n
-
-2. **Short-term Goals:**
-   - Complete benchmark comparisons
-   - Optimize for Raspberry Pi deployment
-   - Test Android tablet integration
-
-3. **Long-term Optimization:**
-   - Custom dataset training
-   - Hardware-specific model optimization
-   - Performance monitoring and analytics
