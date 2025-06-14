@@ -662,5 +662,3 @@ def manage_memory():
    - Custom dataset training
    - Hardware-specific model optimization
    - Performance monitoring and analytics
-
-This guide provides a complete roadmap for upgrading your YOLO implementation while maintaining focus on your specific use case of car detection on edge devices.
