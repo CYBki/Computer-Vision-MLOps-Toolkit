@@ -55,9 +55,9 @@ graph TD
     M --> N
     N --> O[Deployment]
     
-    style A fill:#ffcccc
+    style A fill:#8888cc
     style J fill:#ccffcc
-    style O fill:#ccccff
+    style O fill:#8888cc
 ```
 
 ---
@@ -483,17 +483,17 @@ detector.run_optimized_detection()
 
 ### 5.1 Önerilen Yükseltme Stratejisi
 
-**Aşama 1: Hızlı Test (1 hafta)**
+**Aşama 1: Hızlı Test**
 ```
 YOLOv5 → YOLOv8n (PyTorch) → Benchmark → ONNX/NCNN Export
 ```
 
-**Aşama 2: Optimizasyon (2 hafta)**
+**Aşama 2: Optimizasyon**
 ```
 YOLOv11n Test → Performance Comparison → Format Optimization
 ```
 
-**Aşama 3: Production (1 hafta)**
+**Aşama 3: Production**
 ```
 Custom Training → Deployment → Monitoring
 ```
@@ -514,5 +514,3 @@ Custom Training → Deployment → Monitoring
 ✅ **Küçük input resolution** tercih edin (320x320)
 ✅ **Confidence threshold** optimize edin (0.4-0.5)
 ✅ **Model quantization** uygulayın (FP16)
-
-Bu rehber ile YOLOv5'ten YOLOv11'e geçiş için tüm gerekli araçlara sahipsiniz. Benchmark sonuçlarına göre kesin kararı verebilirsiniz.
