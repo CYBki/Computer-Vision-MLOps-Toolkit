@@ -10,7 +10,7 @@ Bu rehber, ClearML kullanarak YOLOv modellerini tamamen local ortamda eğitmeniz
 5. [Model Eğitimi](#model-eğitimi)
 6. [UI ile İzleme](#ui-ile-izleme)
 7. [Alternatif Kurulum Yöntemleri](#alternatif-kurulum-yöntemleri)
-
+8. 
 ## Sistem Gereksinimleri
 
 ### Minimum Gereksinimler
