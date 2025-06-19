@@ -8,7 +8,7 @@ Bu rehber, ClearML kullanarak YOLOv modellerini tamamen local ortamda eğitmeniz
 3. [ClearML Client Kurulumu](#clearml-client-kurulumu)
 4. [YOLOv Ortamının Hazırlanması](#yolov-ortamının-hazırlanması)
 5. [Model Eğitimi](#model-eğitimi)
-6. [ui ile İzleme](#ui-ile-izleme)
+6. [UI ile İzleme](#ui-ile-izleme)
 7. [Alternatif Kurulum Yöntemleri](#alternatif-kurulum-yöntemleri)
 
 ## Sistem Gereksinimleri
@@ -274,7 +274,7 @@ print("YOLOv8 eğitimi tamamlandı!")
 python train_yolov8_clearml.py
 ```
 
-## ui ile İzleme
+## ui ile İzleme ## <a id="ui-ile-izleme"></a>ui ile İzleme
 
 ### 1. Web UI'ya Erişim
 Tarayıcınızda `http://localhost:8080` adresine gidin.
