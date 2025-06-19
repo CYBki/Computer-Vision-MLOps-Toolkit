@@ -10,8 +10,7 @@ Bu rehber, ClearML kullanarak YOLOv modellerini tamamen local ortamda eğitmeniz
 5. [Model Eğitimi](#model-eğitimi)
 6. [UI ile İzleme](#ui-ile-izleme)
 7. [Alternatif Kurulum Yöntemleri](#alternatif-kurulum-yöntemleri)
-8. [Sorun Giderme](#sorun-giderme)
-
+8. 
 ## Sistem Gereksinimleri
 
 ### Minimum Gereksinimler
@@ -566,6 +565,3 @@ Bu rehber ile ClearML kullanarak YOLOv modellerinizi tamamen local ortamda eğit
 - [YOLOv5 Repository](https://github.com/ultralytics/yolov5)
 - [YOLOv8 Documentation](https://docs.ultralytics.com)
 - [Docker Documentation](https://docs.docker.com)
-
-### İletişim ve Destek
-Sorunlarınız için local ortamınızda log dosyalarını kontrol edin ve gerektiğinde bu rehberdeki sorun giderme bölümünü inceleyin.
