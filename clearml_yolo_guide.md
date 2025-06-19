@@ -274,7 +274,7 @@ print("YOLOv8 eğitimi tamamlandı!")
 python train_yolov8_clearml.py
 ```
 
-## ui ile İzleme ## <a id="ui-ile-izleme"></a>ui ile İzleme
+## <a id="ui-ile-izleme"></a>ui ile İzleme
 
 ### 1. Web UI'ya Erişim
 Tarayıcınızda `http://localhost:8080` adresine gidin.
