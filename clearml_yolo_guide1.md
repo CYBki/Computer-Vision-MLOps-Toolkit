@@ -8,7 +8,7 @@ Bu rehber, ClearML kullanarak YOLOv modellerini tamamen local ortamda eğitmeniz
 3. [ClearML Client Kurulumu](#clearml-client-kurulumu)
 4. [YOLOv Ortamının Hazırlanması](#yolov-ortamının-hazırlanması)
 5. [Model Eğitimi](#model-eğitimi)
-6. [UI ile İzleme](#ui-ile-izleme-1)
+6. [UI ile İzleme](#ui-ile-izleme)
 7. [Alternatif Kurulum Yöntemleri](#alternatif-kurulum-yöntemleri)
 8. [Sorun Giderme](#sorun-giderme)
 
