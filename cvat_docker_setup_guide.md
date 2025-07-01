@@ -101,7 +101,7 @@ cvat_ui                         Up
 traefik                         Up
 ```
 
-### 6. Süper Kullanıcı Oluşturma
+### 6. Süper Kullanıcı Oluşturma / direkt adrese girip ui üzerinden kullanıcı oluşturabilirsiniz.
 
 ```bash
 # CVAT için admin kullanıcı oluşturun
