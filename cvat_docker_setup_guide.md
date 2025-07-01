@@ -1,6 +1,8 @@
-# CVAT Docker Kurulum Rehberi / bunu bir bilgisayarda kurup daha sonra aynı adres ile diğer bilgisayarlardan erişilebilir.
+# CVAT Docker Kurulum Rehberi 
 
 Bu rehber, CVAT'ı Docker ve Docker Compose kullanarak yerel olarak kurmak için adım adım talimatlar içerir.
+> ⚠️ **UYARI:** Bunu bir bilgisayarda kurup daha sonra aynı adres ile diğer bilgisayarlardan erişilebilir.
+
 
 ## Gereksinimler
 
