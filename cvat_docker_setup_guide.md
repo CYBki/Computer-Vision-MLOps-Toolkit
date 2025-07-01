@@ -71,7 +71,7 @@ Eğer varsayılan port (8080) çakışıyorsa, `docker-compose.yml` dosyasını 
 nano docker-compose.yml
 ```
 
-Traefik ports bölümünü şu şekilde değiştirin:
+Traefik ports bölümünü şu şekilde değiştirin: bu portlar kullnımdaysa değiştirilebilir.
 ```yaml
 ports:
   - 8083:8080  # Ana CVAT portu
