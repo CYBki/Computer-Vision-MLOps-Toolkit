@@ -23,7 +23,7 @@ docker compose version
 sudo systemctl start docker
 sudo systemctl enable docker
 
-# Kullanıcınızı docker grubuna ekleyin (yeniden giriş gerekir)
+# Kullanıcınızı docker grubuna ekleyin (yeniden giriş gerekir)  Yetkisi olan kişi tarafından yapılır.
 sudo usermod -aG docker $USER
 ```
 
@@ -49,7 +49,7 @@ Yerel IP adresinizi öğrenin:
 ip addr show | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | cut -d/ -f1
 ```
 
-`.env` dosyası oluşturun:
+`.env` dosyası oluşturun: 
 ```bash
 # .env dosyasını oluşturun
 cat > .env << EOF
