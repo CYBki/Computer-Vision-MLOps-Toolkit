@@ -1,3 +1,7 @@
+---
+Bu rehber, bilgisayar görüsü ve MLOps projelerinde karşılaşılan sembolik link (symlink) yönetimi sorunlarına çözüm sunar. Özellikle veri, model ve kod dosyalarının farklı klasörler arasında kolayca erişilebilir olmasını sağlar. Symlink kullanımı sayesinde dosya bütünlüğü korunur, proje yapısı sadeleşir ve tekrarlı veri çoğaltma ihtiyacı ortadan kalkar. Bu döküman, symlink oluşturma, silme ve yönetme işlemlerini adım adım açıklar ve olası hata ve çözümlerine yer verir.
+---
+
 # YOLO Dataset Hazırlama Rehberi
 
 Bu rehber, YOLO object detection için dataset hazırlama sürecini adım adım açıklar. İki Python scripti kullanarak görsellerinizi train/val/test setlerine ayırabilir ve final dataset'i oluşturabilirsiniz.
