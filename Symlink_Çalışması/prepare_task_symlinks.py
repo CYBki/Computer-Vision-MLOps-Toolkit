@@ -8,12 +8,12 @@ def split_and_symlink(task_path: Path, val_ratio=0.2, test_ratio=0.1):
     lbl_train = task_path / "labels/Train"
     assert img_train.exists() and lbl_train.exists(), "Eksik klasör"
 
-    # Hedef klasörleri oluştur
+    # “Create destination/target folders”
     for split in ["train", "val", "test"]:
         (task_path / f"images/{split}").mkdir(parents=True, exist_ok=True)
         (task_path / f"labels/{split}").mkdir(parents=True, exist_ok=True)
 
-    # Görselleri al
+    # Fetch the images
     image_files = list(img_train.glob("*.jpg")) + list(img_train.glob("*.png"))
     random.shuffle(image_files)
 
@@ -36,22 +36,23 @@ def split_and_symlink(task_path: Path, val_ratio=0.2, test_ratio=0.1):
     link(val_files, "val")
     link(test_files, "test")
 
-    print(f"{task_path.name} için symlink oluşturuldu ✅")
+    `print(f"Symlink created for {task_path.name} ✅")`
 
     # data.yaml güncelle
     new_data = {
         "train": "images/train",
         "val": "images/val",
         "test": "images/test",
-        "nc": 2,  # Burayı gerçek değere göre alman gerekebilir
-        "names": ["car", "truck"]  # Gerçek sınıf isimleri ile değiştir
+        "nc": 2,  # You might need to take this according to the actual value.
+        "names": ["car", "truck"]  # Replace with the actual class names.
     }
     with open(task_path / "data.yaml", "w") as f:
         yaml.dump(new_data, f)
 
-    print(f"{task_path.name}/data.yaml güncellendi ✅\n")
+    print(f"{task_path.name}/data.yaml updated ✅\n")
 
-# Tüm task'leri uygula
-root_dir = Path("/home/seyitaliyorgun/kendi_datasetiniz") # bu orijinal datasetinizin path'ini içermeli
+
+# Apply all tasks
+root_dir = Path("/home/user/your_dataset")  # this should contain the path to your original dataset
 for task in root_dir.glob("task_*"):
     split_and_symlink(task)
