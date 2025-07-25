@@ -26,24 +26,25 @@ def symlink_all(task_root: Path, merged_root: Path):
                     os.symlink(lbl_file.resolve(), target_lbl)
                 except FileExistsError:
                     pass
-    print("✅ Tüm symlink'ler oluşturuldu.")
+    print("✅ All symlinks have been created.")
 
 def create_final_yaml(save_path):
     data = {
         "train": str((save_path / "images/train").resolve()),
         "val": str((save_path / "images/val").resolve()),
         "test": str((save_path / "images/test").resolve()),
-        "nc": 2,  # Gerçek class sayısını yaz
-        "names": ["car", "truck"]  # Gerçek class isimlerini yaz
+        "nc": 2,  # Write the actual number of classes
+        "names": ["car", "truck"]  # Write the actual class names
+
     }
     import yaml
     with open(save_path / "data.yaml", "w") as f:
         yaml.dump(data, f)
-    print("✅ final data.yaml oluşturuldu.")
+    print("✅ “final data.yaml has been created.")
 
 # Ana işlem
-task_root = Path("/home/seyitaliyorgun/sett")
-merged_root = Path("/home/seyitaliyorgun/merged_yolo")
+task_root = Path("/home/user/your_root")
+merged_root = Path("/home/user/merged_yolo")
 
 symlink_all(task_root, merged_root)
 create_final_yaml(merged_root)
