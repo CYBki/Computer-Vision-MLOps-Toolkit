@@ -76,7 +76,7 @@ task_1/
 │   ├── val/             # Symlinks (%20)
 │   └── test/            # Symlinks (%10)
 ├── labels/
-│   ├── Train/           # Orijinal etiketler
+│   ├── Train/           # Original labels
 │   ├── train/           # Symlinks
 │   ├── val/             # Symlinks
 │   └── test/            # Symlinks
