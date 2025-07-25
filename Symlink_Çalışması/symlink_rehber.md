@@ -1,20 +1,22 @@
-# YOLO Dataset Hazırlama Rehberi
+```markdown
+# YOLO Dataset Preparation Guide
 
-Bu rehber, YOLO object detection için dataset hazırlama sürecini adım adım açıklar. İki Python scripti kullanarak görsellerinizi train/val/test setlerine ayırabilir ve final dataset'i oluşturabilirsiniz.
+This guide walks you through preparing a dataset for YOLO object detection. Using two Python scripts, you can split your images into train/val/test sets and generate a final dataset ready for training.
 
-## Gereksinimler
+## Requirements
 
-- Python 3.x
-- PyYAML kütüphanesi (`pip install pyyaml`)
-- Linux/Unix sistemi (symlink desteği için)
+- Python 3.x  
+- PyYAML library (`pip install pyyaml`)  
+- Linux/Unix system (for symlink support)
 
-## Klasör Yapısı
+## Folder Structure
 
-Başlangıçta dataset'iniz şu yapıda olmalı:
+Initially, your dataset should look like this:
 
 ```
-kendi_datasetiniz/
-├── task_1/
+
+your\_dataset/
+├── task\_1/
 │   ├── images/
 │   │   └── Train/
 │   │       ├── image1.jpg
@@ -25,141 +27,168 @@ kendi_datasetiniz/
 │           ├── image1.txt
 │           ├── image2.txt
 │           └── ...
-├── task_2/
+├── task\_2/
 │   ├── images/Train/
 │   └── labels/Train/
 └── ...
-```
 
-## Adım 1: Dataset Bölme ve Symlink Oluşturma
+````
 
-### `prepare_task_symlinks.py` Scripti
+## Step 1: Splitting Dataset and Creating Symlinks
 
-Bu script her task klasörü için aşağıdaki işlemleri yapar:
+### `prepare_task_symlinks.py` Script
 
-1. **Görsel dosyalarını bulur**: Train klasöründeki .jpg ve .png dosyalarını tarar
-2. **Rastgele karıştırır**: Veriyi objektif şekilde böler
-3. **Oranlarına göre böler**:
-   - Test: %10
-   - Validation: %20  
-   - Train: %70
-4. **Symlink oluşturur**: Dosyaları kopyalamak yerine symbolic link kullanır (disk tasarrufu)
-5. **data.yaml oluşturur**: YOLO için gerekli konfigürasyon dosyası
+This script performs the following actions for each task folder:
 
-### Kullanım
+1. **Finds image files**: Scans for `.jpg` and `.png` files in the `Train` folder  
+2. **Shuffles the data**: Ensures unbiased splitting  
+3. **Splits by ratio**:
+   - Test: 10%
+   - Validation: 20%
+   - Train: 70%
+4. **Creates symlinks**: Uses symbolic links instead of copying files (saves disk space)  
+5. **Generates `data.yaml`**: The configuration file required by YOLO
 
-1. Script'teki path'i düzenleyin:
-```python
-root_dir = Path("/home/seyitaliyorgun/kendi_datasetiniz")  # Kendi path'inizi yazın
-```
+### Usage
 
-2. Class bilgilerini güncelleyin:
-```python
-"nc": 2,  # Sınıf sayınız
-"names": ["car", "truck"]  # Gerçek sınıf isimleriniz
-```
+1. Adjust the dataset path in the script:
 
-3. Script'i çalıştırın:
-```bash
-python prepare_task_symlinks.py
-```
+    ```python
+    root_dir = Path("/home/user/your_dataset")  # Replace with your actual path
+    ```
 
-### Sonuç
+2. Update class info:
 
-Her task klasöründe şu yapı oluşur:
+    ```python
+    "nc": 2,  # Number of classes
+    "names": ["car", "truck"]  # Replace with your actual class names
+    ```
 
-```
-task_1/
+3. Run the script:
+
+    ```bash
+    python prepare_task_symlinks.py
+    ```
+
+### Result
+
+Each task folder will now have the following structure:
+
+````
+
+task\_1/
 ├── images/
-│   ├── Train/           # Orijinal dosyalar
-│   ├── train/           # Symlink'ler (%70)
-│   ├── val/             # Symlink'ler (%20)
-│   └── test/            # Symlink'ler (%10)
+│   ├── Train/           # Original images
+│   ├── train/           # Symlinks (70%)
+│   ├── val/             # Symlinks (20%)
+│   └── test/            # Symlinks (10%)
 ├── labels/
-│   ├── Train/           # Orijinal etiketler
-│   ├── train/           # Symlink'ler
-│   ├── val/             # Symlink'ler
-│   └── test/            # Symlink'ler
-└── data.yaml            # YOLO config dosyası
-```
+│   ├── Train/           # Original labels
+│   ├── train/           # Symlinks
+│   ├── val/             # Symlinks
+│   └── test/            # Symlinks
+└── data.yaml            # YOLO configuration file
 
-## Adım 2: Final Dataset Birleştirme
+````
 
-### `merge_final_dataset.py` Scripti
+## Step 2: Merging the Final Dataset
 
-Bu script tüm task'lerdeki bölünmüş veriyi tek bir dataset'te toplar.
+### `merge_final_dataset.py` Script
 
-### Kullanım
+This script collects split data from all tasks and merges them into a single YOLO-compatible dataset.
 
-1. Path'leri düzenleyin:
-```python
-task_root = Path("/home/seyitaliyorgun/sett")        # Task'lerin bulunduğu klasör
-merged_root = Path("/home/seyitaliyorgun/merged_yolo") # Final dataset klasörü
-```
+### Usage
 
-2. Final yaml'daki class bilgilerini kontrol edin:
-```python
-"nc": 2,  # Toplam sınıf sayısı
-"names": ["car", "truck"]  # Tüm sınıf isimleri
-```
+1. Set the paths in the script:
 
-3. Script'i çalıştırın:
-```bash
-python merge_final_dataset.py
-```
+    ```python
+    task_root = Path("/home/user/your_root")           # Folder with all task folders
+    merged_root = Path("/home/user/your_merged_yolo")  # Final merged dataset folder
+    ```
 
-### Sonuç
+2. Update class info in the final `data.yaml`:
 
-Final dataset yapısı:
+    ```python
+    "nc": 2,  # Total number of classes
+    "names": ["car", "truck"]  # All class names
+    ```
 
-```
-merged_yolo/
+3. Run the script:
+
+    ```bash
+    python merge_final_dataset.py
+    ```
+
+### Result
+
+The final dataset structure:
+
+````
+
+merged\_yolo/
 ├── images/
-│   ├── train/           # Tüm task'lerden train görselleri
-│   ├── val/             # Tüm task'lerden val görselleri
-│   └── test/            # Tüm task'lerden test görselleri
+│   ├── train/           # Train images from all tasks
+│   ├── val/             # Validation images from all tasks
+│   └── test/            # Test images from all tasks
 ├── labels/
-│   ├── train/           # Karşılık gelen etiketler
-│   ├── val/             # Karşılık gelen etiketler
-│   └── test/            # Karşılık gelen etiketler
-└── data.yaml            # Final YOLO config
+│   ├── train/           # Corresponding label files
+│   ├── val/
+│   └── test/
+└── data.yaml            # Final YOLO configuration file
+
 ```
 
-## Önemli Notlar
+## Notes
 
-### Symlink Avantajları
-- **Disk tasarrufu**: Dosyalar kopyalanmaz, sadece referans oluşturulur
-- **Hız**: Büyük dataset'lerde çok daha hızlı
-- **Güncellenebilirlik**: Orijinal dosya değişirse symlink otomatik güncellenir
+### Symlink Benefits
 
-### Dosya İsmi Çakışmaları
-Script, aynı isimli dosyalar için `FileExistsError` yakalayarak çakışmaları önler.
+- **Disk efficient**: No duplication, just references
+- **Fast**: Much quicker for large datasets
+- **Automatically updated**: If original files change, symlinks reflect changes instantly
 
-### Label Formatı
-YOLO formatında etiketler beklenir:
+### Filename Collisions
+
+The script handles duplicate filenames using `FileExistsError` to avoid conflicts.
+
+### Label Format
+
+YOLO expects labels in this format:
+
 ```
-class_id center_x center_y width height
-```
-Koordinatlar 0-1 arasında normalize edilmiş olmalı.
+
+class\_id center\_x center\_y width height
+
+````
+
+All values must be normalized between 0 and 1.
 
 ## Troubleshooting
 
-### Hata: "Eksik klasör"
-- `images/Train` ve `labels/Train` klasörlerinin var olduğundan emin olun
+### Error: "Missing folder"
 
-### Symlink hataları
-- Linux/Unix sistem kullandığınızdan emin olun
-- Dosya izinlerini kontrol edin
+Ensure both `images/Train` and `labels/Train` directories exist.
 
-### YAML hatası
-- PyYAML kütüphanesinin yüklü olduğundan emin olun: `pip install pyyaml`
+### Symlink issues
 
-## YOLO ile Kullanım
+- Make sure you’re on a Linux/Unix system  
+- Check file permissions if links aren't created
 
-Final dataset hazır olduktan sonra YOLO training için kullanabilirsiniz:
+### YAML errors
+
+- Ensure PyYAML is installed:
+
+    ```bash
+    pip install pyyaml
+    ```
+
+## Using the Dataset with YOLO
+
+Once the dataset is ready, you can train YOLO like this:
 
 ```bash
 yolo train data=/path/to/merged_yolo/data.yaml model=yolov8n.pt epochs=100
-```
+````
 
-Bu rehberi takip ederek dataset'inizi YOLO için hazır hale getirebilirsiniz.
+By following this guide, you’ll have your dataset fully prepared for YOLO training.
+
+```
