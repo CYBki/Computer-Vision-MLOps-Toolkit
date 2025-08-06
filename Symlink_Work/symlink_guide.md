@@ -37,23 +37,21 @@ kendi_datasetiniz/
 
 This script performs the following steps for each task folder:
 
-1. **Finds image files**: Scans for .jpg and .png files in the Train folder
-2. **Shuffles randomly**: Splits data objectively
-3. **Splits according to ratios**:
-   - Test: %10
-   - Validation: %20  
-   - Train: %70
-4. **Creates symlinks**: Uses symbolic links instead of copying files (saves disk space)
-5. **Generates data.yaml**: Required configuration file for YOLO
+1. **Reads configuration**: `config.yaml` defines split ratios, dataset path and a random seed.
+2. **Finds image files**: Scans for `.jpg` and `.png` files in the `Train` folder.
+3. **Shuffles deterministically**: Uses a stable RNG seeded from the config for reproducible splits.
+4. **Splits according to ratios**: Defaults are Test %10, Validation %20 and Train %70.
+5. **Creates symlinks**: Uses symbolic links instead of copying files (saves disk space).
+6. **Generates data.yaml and metadata**: Creates required YOLO config and `split_meta.yaml` with counts and seed.
 
 ### Usage
 
-1. Edit the path in the script:
-```python
-root_dir = Path("/home/user/your_dataset")  # Replace with your own path
-```
+1. Edit the values in `config.yaml`:
+   - `dataset_root`: Path to the dataset containing `task_*` folders.
+   - `seed`: Seed value for reproducible shuffling.
+   - `splits`: Train/val/test percentages.
 
-2. Update class information:
+2. Update class information inside `prepare_task_symlinks.py` if needed:
 ```python
 "nc": 2,  # Number of classes
 "names": ["car", "truck"]  # Your actual class names
@@ -80,7 +78,8 @@ task_1/
 │   ├── train/           # Symlinks
 │   ├── val/             # Symlinks
 │   └── test/            # Symlinks
-└── data.yaml            # YOLO config file
+├── data.yaml            # YOLO config file
+└── split_meta.yaml      # Metadata containing seed and file counts
 ```
 
 ## Step 2: Merging the Final Dataset
