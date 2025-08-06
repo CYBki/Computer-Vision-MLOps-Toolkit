@@ -1,0 +1,6 @@
+seed: 42
+splits:
+  train: 70
+  val: 20
+  test: 10
+dataset_root: /home/user/your_dataset
